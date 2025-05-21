@@ -8,7 +8,17 @@ function App() {
 
   return (
     <>
+    <header>
       <h1>My Reactstore</h1>
+      <hr/>
+    </header>
+      <main>
+     <h2>Product List</h2>
+      </main>
+      <footer>
+        <hr/>
+        &copy; 2005.All rights Reserved.
+      </footer>
     </>
   )
 }
