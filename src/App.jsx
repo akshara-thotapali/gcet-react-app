@@ -4,21 +4,21 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-    <header>
-      <h1>My Reactstore</h1>
-      <hr/>
-    </header>
-      <main>
-     <h2>Product List</h2>
-      </main>
-      <footer>
-        <hr/>
-        &copy; 2005.All rights Reserved.
-      </footer>
+     <div>
+       <header>
+        <h1> My Reactstore</h1>
+        <hr />
+       </header>
+       <main>
+        <h2>Products List</h2>
+       </main>
+       <footer>
+        <hr />
+        &copy; 2025 All rights Reserved.
+       </footer>
+     </div>
     </>
   )
 }
