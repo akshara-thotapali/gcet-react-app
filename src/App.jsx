@@ -13,8 +13,8 @@ function App() {
      <BrowserRouter>
        <header>
         <h1> My Reactstore</h1>
-        <Link to="/">Home</Link>
-        <Link to="/Cart">Cart</Link>
+        <Link to="/">Home</Link>-
+        <Link to="/Cart">Cart</Link>-
         <Link to="/Login">Login</Link>
         <hr />
        </header>
