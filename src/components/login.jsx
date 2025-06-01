@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Login.css"; 
 
 export default function Login() {
   const [users, setUsers] = useState([]);
@@ -27,45 +28,45 @@ export default function Login() {
   };
 
   return (
-    <div style={{ margin: "30px" }}>
-      <h3>{isRegister ? "Register" : "Login"}</h3>
-      <form onSubmit={isRegister ? handleRegister : handleLogin}>
-        {isRegister && (
-          <p>
+    <div className="container">
+      <div className="card">
+        <h2>{isRegister ? "Register" : "Login"}</h2>
+        <form onSubmit={isRegister ? handleRegister : handleLogin}>
+          {isRegister && (
             <input
               type="text"
               placeholder="Name"
               value={user.name}
               onChange={(e) => setUser({ ...user, name: e.target.value })}
+              required
             />
-          </p>
-        )}
-        <p>
+          )}
           <input
-            type="text"
+            type="email"
             placeholder="Email"
             value={user.email}
             onChange={(e) => setUser({ ...user, email: e.target.value })}
+            required
           />
-        </p>
-        <p>
           <input
             type="password"
             placeholder="Password"
             value={user.pass}
             onChange={(e) => setUser({ ...user, pass: e.target.value })}
+            required
           />
+          <button type="submit">
+            {isRegister ? "Register" : "Login"}
+          </button>
+        </form>
+        {msg && <p className="message">{msg}</p>}
+        <p className="switch">
+          {isRegister ? "Already have an account?" : "Don't have an account?"}{" "}
+          <span onClick={() => setIsRegister(!isRegister)}>
+            {isRegister ? "Login" : "Register"}
+          </span>
         </p>
-        <button type="submit">{isRegister ? "Register" : "Login"}</button>
-      </form>
-
-      <p>{msg}</p>
-      <p>
-        {isRegister ? "Already have an account?" : "Don't have an account?"}{" "}
-        <button onClick={() => setIsRegister(!isRegister)}>
-          {isRegister ? "Login" : "Register"}
-        </button>
-      </p>
+      </div>
     </div>
   );
 }
