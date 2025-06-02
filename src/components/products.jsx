@@ -1,7 +1,13 @@
 import React from 'react'
+import { useContext } from 'react'
+import { AppContext } from "../AppContext";
 
-export default function Products() {
+export default function Product() {
+  const {user} = useContext(AppContext)
   return (
-    <div>product list</div>
+    <div>
+      <h3>Welcome {user.name}! </h3>
+      Product List
+      </div>
   )
 }

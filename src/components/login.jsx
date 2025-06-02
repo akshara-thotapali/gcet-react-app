@@ -1,72 +1,43 @@
-import React, { useState } from "react";
-import "./Login.css"; 
+// src/components/Login.jsx
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "../AppContext";
 
 export default function Login() {
-  const [users, setUsers] = useState([]);
-  const [isRegister, setIsRegister] = useState(false);
-  const [user, setUser] = useState({ name: "", email: "", pass: "" });
-  const [msg, setMsg] = useState("");
+  const { users, setUser } = useContext(AppContext);
+  const [formData, setFormData] = useState({ email: "", pass: "" });
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const found = users.find(
-      (u) => u.email === user.email && u.pass === user.pass
+    const match = users.find(
+      (u) => u.email === formData.email && u.pass === formData.pass
     );
-    setMsg(found ? `Welcome ${found.name}` : "Invalid email or password");
-  };
-
-  const handleRegister = (e) => {
-    e.preventDefault();
-    if (!user.name || !user.email || !user.pass) {
-      setMsg("All fields are required");
-      return;
+    if (match) {
+      setUser({ name: match.name, email: match.email, token: "abcd1234" });
+      navigate("/");
+    } else {
+      alert("Invalid credentials");
     }
-    setUsers([...users, user]);
-    setMsg("Registration successful! Please login.");
-    setUser({ name: "", email: "", pass: "" });
-    setIsRegister(false);
   };
 
   return (
-    <div className="container">
-      <div className="card">
-        <h2>{isRegister ? "Register" : "Login"}</h2>
-        <form onSubmit={isRegister ? handleRegister : handleLogin}>
-          {isRegister && (
-            <input
-              type="text"
-              placeholder="Name"
-              value={user.name}
-              onChange={(e) => setUser({ ...user, name: e.target.value })}
-              required
-            />
-          )}
-          <input
-            type="email"
-            placeholder="Email"
-            value={user.email}
-            onChange={(e) => setUser({ ...user, email: e.target.value })}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={user.pass}
-            onChange={(e) => setUser({ ...user, pass: e.target.value })}
-            required
-          />
-          <button type="submit">
-            {isRegister ? "Register" : "Login"}
-          </button>
-        </form>
-        {msg && <p className="message">{msg}</p>}
-        <p className="switch">
-          {isRegister ? "Already have an account?" : "Don't have an account?"}{" "}
-          <span onClick={() => setIsRegister(!isRegister)}>
-            {isRegister ? "Login" : "Register"}
-          </span>
-        </p>
-      </div>
+    <div>
+      <h3>Login</h3>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Email"
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        /><br />
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setFormData({ ...formData, pass: e.target.value })}
+        /><br />
+        <button type="submit">Submit</button>
+      </form>
+      <button onClick={() => navigate("/register")}>Create Account</button>
     </div>
   );
 }
