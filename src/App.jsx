@@ -10,8 +10,8 @@ import Logout from "./components/Logout";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AppContext } from "./AppContext";
-
+import { createContext } from "react";
+export const AppContext = createContext();
 function App() {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({});

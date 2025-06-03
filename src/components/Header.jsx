@@ -1,5 +1,5 @@
 import React from "react";
-import { AppContext } from "../AppContext"; // ✅
+import App, { AppContext } from "../App";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 export default function Header() {
