@@ -6,9 +6,8 @@ import "./product.css"
 export default function Product() {
   const { user } = useContext(AppContext);
   const [products, setProducts] = useState([]);
-  const API = import.meta.env.VITE_API_URL;
   const fetchProducts = async () => {
-    const res = await axios.get(`${API}/products/all`);
+    const res = await axios.get(`https://gcet-node-app-ashen.vercel.app/products/all`);
     setProducts(res.data);
   };
   useEffect(() => {
