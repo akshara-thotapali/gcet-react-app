@@ -14,17 +14,14 @@ const Navigate = useNavigate()
         return sum + value.price * (cart[value.pid] ?? 0);
       }, 0)
     );
-  }, []);
+  }, [cart]);
 
   const increment = (id) => {
-    alert(id);
-    cart[id] = cart[id] + 1;
+    setCart({...cart,[id]:cart[id]+1})
     console.log(cart);
   };
   const decrement = (id) => {
-    alert(id);
-    cart[id] = cart[id] - 1;
-    console.log(cart);
+    setCart({...cart,[id]:cart[id]-1})
   };
 
   const placeOrder = async () => {
